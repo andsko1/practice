@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import math
-const = {'pi': math.pi, 'e': math.e, 'y': 0.57721566490153286060651209008240243}
+const = {'pi': math.pi, 'e': math.e, 'y': 0.57721566490153286060651209008240243,'hell': 666}
 print ('Constants:')
 print const.keys()
 try:
