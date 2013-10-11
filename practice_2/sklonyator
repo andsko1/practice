@@ -1,0 +1,22 @@
+#!/usr/bin/python
+dic = {"one": "ruka", "two": "ruki", "many": "ruk"}
+x = input("Enter number\n")
+ 	
+def humanizer(num, dic):
+ if type(num) != int:
+  print 'Enter a number'
+ elif type(dic) != dict:
+  print 'Enter dictionary'
+ else: 
+  numthou = num%100
+  numdeci = num%10
+  if numthou > 20 or numthou < 10:
+	if numdeci == 1:
+	 print num, dic["one"]
+	elif numdeci < 5: 
+ 	 print num, dic["two"]
+	else:
+	 print num, dic["many"]
+  else:
+	print num, dic["many"] 
+humanizer(x, dic) 
