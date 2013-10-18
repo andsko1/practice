@@ -7,9 +7,20 @@
  <body>
     <h1>Listing catalog {{ directory }}</h1>
     <table>
-    {% for i in file_list %}
-    <tr><td>{{ i }}</td></tr>
+    {% for i in dir_list %}
+    <tr>
+	<td>
+	 <a href="{{ i }}">{{ i}}
+	 </a>
+	</td>
+    </tr>
     {% endfor %}
+    {% for f in file_list %}
+    <tr>
+	<td>{{ f }}
+	</td>
+    </tr>
+    {% endfor %}   
     </table>
  </body>
 </html>
