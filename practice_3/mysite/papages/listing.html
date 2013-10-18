@@ -3,23 +3,34 @@
  <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Listing catalog {{ directory }}</title>
+    <style type="text/css">
+	.col { color: #B22222;}
+    </style>
  </head>
  <body>
     <h1>Listing catalog {{ directory }}</h1>
     <table>
+    <tr class="col">
+	<td>name</td>
+	<td>size</td>
+	<td>last modification</td>
+    </tr>		
     {% for i in dir_list %}
     <tr>
 	<td>
-	 <a href="{{ i }}">{{ i}}
+	 <a href="{{ i.name }}">{{ i.name }}
 	 </a>
 	</td>
+	<td>{{ i.size }}</td>
+	<td>{{ i.lastmodtime }}</td>
     </tr>
     {% endfor %}
     {% for f in file_list %}
     <tr>
-	<td>{{ f }}
-	</td>
-    </tr>
+	<td>{{ f.name }}</td>
+	<td>{{ f.size }}</td>
+	<td>{{ f.lastmodtime }}</td>
+    </tr> 
     {% endfor %}   
     </table>
  </body>
