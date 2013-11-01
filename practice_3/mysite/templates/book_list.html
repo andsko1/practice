@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset=utf-8>
+  <title>All books</title>
+</head>
+<body>
+   <h1>Books list</h1>
+   {% if books %}
+   <table border="1">
+   <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Book publisher</th>
+   {% for book in books %}
+   <tr>
+      <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+      <td>{% for author in book.authors.all %}{{ author.firstname }}; {% endfor %}</td>
+      <td>{{ book.publisher.title }}</td>
+   </tr>
+   {% endfor %}
+   </table>
+   {% else %}
+   <p> No books </p>
+  {% endif %}
+</body>
+</html>
+

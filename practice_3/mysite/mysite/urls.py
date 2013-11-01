@@ -5,7 +5,11 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^log/(?P<path>.*)$', 'papages.views.listing'),	
+    url(r'^log/(?P<path>.*)$', 'papages.views.listing'),
+    url(r'^$', 'papages.views.home'),
+    url(r'^library/$', 'books.views.books'),	
+    url(r'^library/books/$', 'books.views.books'),
+    url(r'^library/books/(?P<book>\d+)/$', 'books.views.book')
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),
