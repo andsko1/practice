@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
- <meta charset=utf-8>
- <title>book</title>
-</head>
-<body>
-<h2>
-    {{ book|safe|linebreaksbr }}
-</h2>
-</body>
+ <head>
+  <meta charset=utf-8>
+  <title>All books</title>
+ </head>
+ <body>
+  <h1>Book</h1>
+  <table border="1">
+  <tr>
+	<th>Title</th>
+	<th>Author</th>	
+    	<th>Publisher</th>
+  </tr>
+  <tr>
+	<td>{{ book }}</td>
+        <td>{% for author in book.authors.all %} <a href="{{ author.get_absolute_url }}">{{ author }}</a>; {% endfor %}</td>
+        <td>{{ book.publisher }}</td>
+  </tr>
+  </table>
+ </body>
 </html>

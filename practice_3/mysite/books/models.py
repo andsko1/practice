@@ -8,7 +8,8 @@ class Author(Model):
 
   def __unicode__(self):
     return u'%s %s' % (self.first_name, self.last_name)
-
+  def get_absolute_url(self):
+    return reverse('mysite.books.views.author', args=[str(self.id)])
  
 class Publisher(Model):
   title = CharField(max_length=32)
@@ -18,7 +19,7 @@ class Publisher(Model):
   website = URLField()
 
   def __unicode__(self):
-    return self.title
+    return u'%s (%s, %s)' % (self.title, self.city, self.country)
 
 
 class Book(Model):
@@ -31,4 +32,4 @@ class Book(Model):
     return self.title
 
   def get_absolute_url(self):
-    return reverse('mysite.books.views.book_list', args=[str(self.id)])
+    return reverse('mysite.books.views.book', args=[str(self.id)])
