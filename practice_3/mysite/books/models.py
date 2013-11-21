@@ -10,11 +10,13 @@ class Author(Model):
   first_name = CharField(max_length=32)
   last_name = CharField(max_length=32)
   email = EmailField(null=True)
+  birthyear = IntegerField(null=True, blank=True)  
 
   def __unicode__(self):
     return u'%s %s' % (self.first_name, self.last_name)
   def get_absolute_url(self):
     return reverse('mysite.books.views.author', args=[str(self.id)])
+
  
 class Publisher(Model):
   title = CharField(max_length=32)
