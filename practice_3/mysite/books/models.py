@@ -4,9 +4,10 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from mysite.settings import MEDIA_ROOT
+from utils.models import TimeStampedModel
 
 # Create your models here.
-class Author(Model):
+class Author(TimeStampedModel):
   first_name = CharField(max_length=32)
   last_name = CharField(max_length=32)
   email = EmailField(null=True)
@@ -18,7 +19,7 @@ class Author(Model):
     return reverse('mysite.books.views.author', args=[str(self.id)])
 
  
-class Publisher(Model):
+class Publisher(TimeStampedModel):
   title = CharField(max_length=32)
   address = TextField()
   city = CharField(max_length=64)
@@ -29,7 +30,7 @@ class Publisher(Model):
     return u'%s (%s, %s)' % (self.title, self.city, self.country)
 
 
-class Book(Model):
+class Book(TimeStampedModel):
   title = CharField(max_length=128)
   authors = ManyToManyField(Author)
   publisher = ForeignKey(Publisher)
@@ -42,7 +43,7 @@ class Book(Model):
   def get_absolute_url(self):
     return reverse('mysite.books.views.book', args=[str(self.id)])
 
-class BooksImage(Model):
+class BooksImage(TimeStampedModel):
     small_image = ImageField(upload_to=MEDIA_ROOT)
     large_image = ImageField(blank=True, null=True, upload_to=MEDIA_ROOT)
     img_id = PositiveIntegerField()
