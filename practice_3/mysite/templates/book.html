@@ -11,11 +11,13 @@
 	<th>Title</th>
 	<th>Author</th>	
     	<th>Publisher</th>
+	<th>Description</th>
   </tr>
   <tr>
 	<td>{{ book }}</td>
         <td>{% for author in book.authors.all %} <a href="{{ author.get_absolute_url }}">{{ author }}</a>; {% endfor %}</td>
         <td>{{ book.publisher }}</td>
+	<td>{{ book.description }}</td>
   </tr>
   </table>
  </body>
