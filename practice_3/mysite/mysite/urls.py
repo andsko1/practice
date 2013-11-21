@@ -1,8 +1,9 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import *
+from django.contrib import admin
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^log/(?P<path>.*)$', 'papages.views.listing'),
@@ -12,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^library/books/(?P<book>\d+)/$', 'books.views.book'),
     url(r'^library/authors/$', 'books.views.authors'),
     url(r'^library/authors/(?P<author>\d+)/$', 'books.views.author'),
-
+    url(r'^admin/', include(admin.site.urls)),
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),
