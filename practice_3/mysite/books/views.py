@@ -4,6 +4,8 @@ from books.models import Book
 from books.models import Author
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from django.views.generic import ListView
+from django.views.generic import DetailView
 
 def books(request):
  books = Book.objects.all()
@@ -25,3 +27,24 @@ def author(request, author):
   return HttpResponse("Error, no author", content_type="text/plain")
  return render_to_response('author.html', {'author': one_author},)
 
+
+
+class BookList(ListView):
+	model = Book
+	context_object_name = 'books'
+	template_name = "book.html"
+
+class AuthorList(ListView):
+	model = Author
+	context_object_name = 'authors'
+	template_name = "author.html"
+
+class BooksDetail(DetailView):
+	model = Book
+	context_object_name = 'books'
+	template_name = "book_list.html"
+
+class AuthorsDetail(DetailView):
+	model = Author
+	context_object_name = 'authors'
+	template_name = "author_list.html"

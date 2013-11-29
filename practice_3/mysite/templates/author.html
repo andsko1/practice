@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-   <meta charset=utf-8>
-   <title>All books</title>
-</head>
-<body>
-   <h1>Author</h1>
-   <table border="1">
-   <tr>
-      <th>Author</th>
-      <th>Email</th>
-      <th>Author's age</th>
-   </tr>
-   <tr>
-      <td>{{ authors }}</td>
-      <td>{{ authors.email }} </td>
-      {% if authors.birthyear %}
-      <td>{{ authors.birthyear }}</td>
-      {% else %}
-      <td> Age unknown </td>
-      {% endif %}	
-   </tr>
-   </table>
-</body>
+ <head>
+    <meta charset=utf-8>
+    <title>Books</title>
+ </head>
+ <body>
+    <h1>Authors list</h1>
+    <ul>
+       {% for author in authors %}
+       <li><a href="{{ author.get_absolute_url }}">{{ author }}</a></li>
+       {% endfor %}
+    </ul>
+ </body>
 </html>
+
