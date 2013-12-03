@@ -2,7 +2,7 @@ from django.conf.urls import *
 from django.contrib import admin
 from orders.views import CustomersList, CustomerDetails
 from books.views import BookList, AuthorList, BooksDetail, AuthorsDetail
-
+from django.contrib.auth.views import logout
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 admin.autodiscover()
@@ -17,12 +17,17 @@ urlpatterns = patterns('',
     #url(r'^library/authors/(?P<author>\d+)/$', 'books.views.author'),
     url(r'^library/$', BookList.as_view()),
     url(r'^library/books/$', BookList.as_view()),
-    url(r'^library/books/(?P<pk>\d+)$', BooksDetail.as_view(), name='book_list.html'),
-    url(r'^library/authors/(?P<pk>\d+)$', AuthorsDetail.as_view(), name='author_list.html'),
-    url(r'^library/authors/$', AuthorList.as_view(), name='author.html'),
+    url(r'^library/books/(?P<pk>\d+)$', BooksDetail.as_view()),
+    url(r'^library/authors/(?P<pk>\d+)$', AuthorsDetail.as_view()),
+    url(r'^library/authors/$', AuthorList.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^orders/$', CustomersList.as_view()),
     url(r'^orders/(?P<pk>\d+)/$', CustomerDetails.as_view(template_name='orders/customer.html')),
+    url(r'^library/search/$', 'search.views.search'),
+    url(r'^login/$', 'registry.views.login'),
+    url(r'^auth/$', 'registry.views.authentication'),
+    url(r'^register/$', 'registry.views.registration'),
+    url(r'^logout/$', logout),
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),

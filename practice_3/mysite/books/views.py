@@ -32,19 +32,15 @@ def author(request, author):
 class BookList(ListView):
 	model = Book
 	context_object_name = 'books'
-	template_name = "book.html"
 
 class AuthorList(ListView):
 	model = Author
 	context_object_name = 'authors'
-	template_name = "author.html"
 
 class BooksDetail(DetailView):
 	model = Book
 	context_object_name = 'books'
-	template_name = "book_list.html"
 
 class AuthorsDetail(DetailView):
 	model = Author
 	context_object_name = 'authors'
-	template_name = "author_list.html"

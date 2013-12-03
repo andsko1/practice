@@ -16,9 +16,8 @@ class Author(TimeStampedModel):
   def __unicode__(self):
     return u'%s %s' % (self.first_name, self.last_name)
   def get_absolute_url(self):
-    return reverse('mysite.books.views.author', args=[str(self.id)])
+    return "/library/authors/{}".format(self.id)
 
- 
 class Publisher(TimeStampedModel):
   title = CharField(max_length=32)
   address = TextField()
@@ -41,7 +40,7 @@ class Book(TimeStampedModel):
     return self.title
 
   def get_absolute_url(self):
-    return reverse('mysite.books.views.book', args=[str(self.id)])
+    return "/library/books/{}".format(self.id)
 
 class BooksImage(TimeStampedModel):
     small_image = ImageField(upload_to=MEDIA_ROOT)

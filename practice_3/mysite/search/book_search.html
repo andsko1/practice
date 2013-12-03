@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <head>
+     <title>Book_search</title>
+ </head>
+ <body>
+  <h1>Введите название или ISBN для поиска книги</h1>
+  <form action="" method="post"> {% csrf_token %}
+  {{ form }}
+ <input type="submit" value="поиск" />
+ </form>
+{% endblock %}
+ Книги:
+ <table border="1">
+     {% for book in books %}
+         <tr>
+          <td>Название:</td>
+          <td>{{ book.title }}</td>
+         </tr>
+         <tr>
+          <td>
+             ISBN:
+          </td>
+          <td>
+            {{ book.isbn }}
+          </td>
+         </tr>
+         <tr>
+          <td>Авторы:</td>
+          <td>{%  for author in book.authors.all %}
+	   <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+	      {% endfor %}
+          </td>
+         </tr>
+         <tr>
+          <td>Издатель: </td>
+          <td>{{ book.publisher }}</td>
+         </tr>
+         <tr>
+          <td>Дата публикации: </td>
+          <td>{{ book.publication_date }}</td>
+         </tr>
+         <tr>
+          <td>Описание: </td>
+          <td>{{ book.description }}</td>
+         </tr>
+     {% endfor %}
+ </table>
+ </body>

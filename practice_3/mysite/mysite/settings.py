@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'orders',
     'south',
     'utils',
+    'search',
 )
 
 # A sample logging configuration. The only tangible logging
