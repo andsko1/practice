@@ -8,39 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Order.created'
-        db.add_column('orders_order', 'created',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Order.updated'
-        db.add_column('orders_order', 'updated',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Customer.created'
-        db.add_column('orders_customer', 'created',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Customer.updated'
-        db.add_column('orders_customer', 'updated',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
-                      keep_default=False)
+        # Deleting field 'Customer.email'
+        db.delete_column('orders_customer', 'email')
 
 
     def backwards(self, orm):
-        # Deleting field 'Order.created'
-        db.delete_column('orders_order', 'created')
-
-        # Deleting field 'Order.updated'
-        db.delete_column('orders_order', 'updated')
-
-        # Deleting field 'Customer.created'
-        db.delete_column('orders_customer', 'created')
-
-        # Deleting field 'Customer.updated'
-        db.delete_column('orders_customer', 'updated')
+        # Adding field 'Customer.email'
+        db.add_column('orders_customer', 'email',
+                      self.gf('django.db.models.fields.EmailField')(max_length=75, null=True),
+                      keep_default=False)
 
 
     models = {
@@ -80,7 +56,6 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Customer'},
             'address': ('django.db.models.fields.TextField', [], {}),
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True'}),
             'firstName': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_approved': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),

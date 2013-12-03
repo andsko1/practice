@@ -8,7 +8,7 @@ from django import forms
 
 def login(request):
     form = UserCreationForm(request.POST)    
-    return render(request, "login.html", {'form': form,})
+    return render(request, "registry/login.html", {'form': form,})
 
 def authentication(request):
     username = request.POST.get('username', '')
@@ -17,9 +17,9 @@ def authentication(request):
 
     if user is not None:
         auth.login(request, user)
-        return render_to_response('login_success.html', {'full_name': request.user.username})
+        return render_to_response('registry/login_success.html', {'full_name': request.user.username})
     else:
-	return render_to_response('login_error.html')
+	return render_to_response('registry/login_error.html')
 
 def registration(request):
     if request.method == 'POST':
@@ -28,10 +28,10 @@ def registration(request):
             new_user = form.save()
             return HttpResponseRedirect('/login/')
         else:
-            return render_to_response('fail_reg.html')
+            return render_to_response('registry/fail_reg.html')
     else:
 	form = UserCreationForm()
-    return render(request, "registration.html", {'form': form,})
+    return render(request, "registry/registration.html", {'form': form,})
 
 
 

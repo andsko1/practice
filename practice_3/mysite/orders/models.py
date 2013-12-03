@@ -14,6 +14,8 @@ class Customer(TimeStampedModel):
 class Order(TimeStampedModel):
     itemid = models.ForeignKey(Book)
     create = models.DateField(auto_now_add=True)
-    customer = models.ForeignKey(Customer)
+    customer = models.ForeignKey(Customer, null=True)
     def __unicode(self):
-	return self.itemid    
+	return self.itemid
+    def get_absolute_url(self):
+	return "/orders/{}/".format(self.id)    

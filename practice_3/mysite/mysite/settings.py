@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'south',
     'utils',
     'search',
+    'registry',
 )
 
 # A sample logging configuration. The only tangible logging

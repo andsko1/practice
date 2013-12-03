@@ -8,39 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Order.created'
-        db.add_column('orders_order', 'created',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Order.updated'
-        db.add_column('orders_order', 'updated',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Customer.created'
-        db.add_column('orders_customer', 'created',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Customer.updated'
-        db.add_column('orders_customer', 'updated',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
+        # Adding field 'Order.customer'
+        db.add_column('orders_order', 'customer',
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['orders.Customer'], null=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'Order.created'
-        db.delete_column('orders_order', 'created')
-
-        # Deleting field 'Order.updated'
-        db.delete_column('orders_order', 'updated')
-
-        # Deleting field 'Customer.created'
-        db.delete_column('orders_customer', 'created')
-
-        # Deleting field 'Customer.updated'
-        db.delete_column('orders_customer', 'updated')
+        # Deleting field 'Order.customer'
+        db.delete_column('orders_order', 'customer_id')
 
 
     models = {
@@ -91,7 +67,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Order'},
             'create': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
-            'customer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['orders.Customer']"}),
+            'customer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['orders.Customer']", 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'itemid': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['books.Book']"}),
             'updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'})

@@ -8,39 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Order.created'
-        db.add_column('orders_order', 'created',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Order.updated'
-        db.add_column('orders_order', 'updated',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Customer.created'
-        db.add_column('orders_customer', 'created',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Customer.updated'
-        db.add_column('orders_customer', 'updated',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
+        # Adding field 'Customer.email'
+        db.add_column('orders_customer', 'email',
+                      self.gf('django.db.models.fields.EmailField')(max_length=75, null=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'Order.created'
-        db.delete_column('orders_order', 'created')
-
-        # Deleting field 'Order.updated'
-        db.delete_column('orders_order', 'updated')
-
-        # Deleting field 'Customer.created'
-        db.delete_column('orders_customer', 'created')
-
-        # Deleting field 'Customer.updated'
-        db.delete_column('orders_customer', 'updated')
+        # Deleting field 'Customer.email'
+        db.delete_column('orders_customer', 'email')
 
 
     models = {

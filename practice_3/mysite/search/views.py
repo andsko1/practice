@@ -20,4 +20,4 @@ def search(request):
             form.save()
     else:
         form = SearchBookForm()
-    return render(request, "book_search.html", {'form': form, 'books': books})
+    return render(request, "search/book_search.html", {'form': form, 'books': books})
