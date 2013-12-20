@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Кодировщик</title>
+  <script type="text/javascript">
+    function whichButton(event) {
+      var elem = document.getElementById('type-display')
+      elem.innerHTML = elem.textContent + String.fromCharCode(event.keyCode)+' ';
+    }
+  </script>
+  </head>
+  
+  <body onkeyup="whichButton(event)">
+    <div id='type-display'>
+      Нажимайте кнопки на клавиатуре: <br/>
+    </div>
+  </body>
+</html>
